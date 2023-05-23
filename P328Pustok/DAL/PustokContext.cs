@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using P328Pustok.Models;
 
 namespace P328Pustok.DAL
 {
-    public class PustokContext:DbContext
+    public class PustokContext: IdentityDbContext
     {
         public PustokContext(DbContextOptions<PustokContext> options):base(options)
         {
@@ -19,7 +20,7 @@ namespace P328Pustok.DAL
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<BookTag> BookTags { get; set; }
-
+        public DbSet<AppUser> AppUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BookTag>().HasKey(x => new { x.TagId, x.BookId });
